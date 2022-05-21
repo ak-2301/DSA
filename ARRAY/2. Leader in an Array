@@ -1,3 +1,5 @@
+Leader Element --An element is called LEADER if it is greater than all the elements to its right side, note that the rightmost element is always a leader.
+
 #include<bits/stdc++.h>
 using namespace std;
 
