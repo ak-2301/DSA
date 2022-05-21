@@ -1,0 +1,31 @@
+ 
+Given an array of integers, write a program to shift all the negative elements to the right side of the array while maintaining the original order of non-negative(>=0) and negative elements.
+Note: consider 0 as a positive element.
+
+#include<bits/stdc++.h>
+using namespace std;
+
+int move_elements(int arr[],int n)
+{
+    int i=0;
+    for(int j=0;j<n;j++)
+    {
+        if(arr[j]>=0)
+        {
+            swap(arr[j],arr[i]);
+            i++;
+        }
+    }
+}
+
+int main()
+{
+    int arr[]={-1,3,4,5,6,-9,5,-4};
+    int n=sizeof(arr)/sizeof(arr[0]);
+    move_elements(arr,n);
+    for(int i=0;i<n;i++)
+    {
+        cout<<arr[i]<<" ";
+    }
+
+}
