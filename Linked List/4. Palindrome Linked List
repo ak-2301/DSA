@@ -1,0 +1,49 @@
+
+#include<bits/stdc++.h>
+using namespace std;
+
+class Node{
+public:
+    int data ;
+    Node *next;
+};
+
+// push data into the nodes 
+void push(Node **head,int val)
+{
+    Node* new_node=new Node();
+    new_node->data=val;
+    new_node->next=(*head);
+    (*head)=new_node;
+}
+// palindromic linked list using reverse vector approach 
+bool palindrome(Node *head)
+{
+    vector<int>v;
+    while(head!=NULL)
+    {
+        v.push_back(head->data);
+        head=head->next;
+    }
+    vector<int>r=v;
+    reverse(v.begin(),v.end());
+    if(v==r)
+        return true;
+    else
+        return false;
+}
+
+int main()
+{
+    Node *head=NULL;
+    push(&head,1);
+    push(&head,2);
+    push(&head,3);
+    push(&head,2);
+    push(&head,1);
+    if(palindrome(head))
+        cout<<"The given Linked list is palindormic"<<endl;
+    else{
+        cout<<"The given linked list is not palindromic"<<endl;
+    }
+}
