@@ -1,0 +1,48 @@
+
+#include<bits/stdc++.h>
+using namespace std;
+
+class Node{
+public:
+    int data ;
+    Node *next;
+};
+
+// push data into the nodes 
+void push(Node **head,int val)
+{
+    Node* new_node=new Node();
+    new_node->data=val;
+    new_node->next=(*head);
+    (*head)=new_node;
+
+}
+
+// approach used two pointer 
+// 1st is fast 2nd is slow 
+// increment fast twice and slow by 1 
+// while fast != null and fast->next !=Null
+int middle(Node *head)
+{
+    Node *fast=head;
+    Node *slow=head;
+    while(fast!=NULL && fast->next!=NULL)
+    {
+        slow=slow->next;
+        fast=fast->next->next;
+    }
+    return slow->data;
+}
+
+int main()
+{
+    Node *head=NULL;
+    push(&head,1);
+    push(&head,2);
+    push(&head,3);
+    push(&head,4);
+    push(&head,5);
+    cout<<"middle of LL is "<<endl;
+    cout<<middle(head)<<endl;
+
+}
