@@ -1,0 +1,74 @@
+// using two approaches 
+// 1 Using hashing 
+// 2 Using Floyd's Cycle Algorithm
+
+
+#include<bits/stdc++.h>
+using namespace std;
+
+class Node{
+public:
+    int data ;
+    Node *next;
+};
+void push(Node **head,int val)
+{
+    Node* new_node=new Node();
+    new_node->data=val;
+    new_node->next=(*head);
+    (*head)=new_node;
+
+}
+// Detect Loop using Hashing Approach 
+bool detect_hasing_method(Node *head)
+{
+    unordered_set<Node*>s;
+    while(head!=NULL)
+    {
+        if(s.find(head)!=s.end())
+        {
+            return true;
+        }
+        s.insert(head);
+        head=head->next;
+    }
+    return false;
+}
+
+// Detect loop using Floyd's Cycle Algorithm
+bool detect_cycle_method(Node *head)
+{
+    Node* fast=head;
+    Node* slow=head;
+    while(fast!=NULL && fast->next!=NULL)
+    {
+        fast=fast->next->next;
+        slow=slow->next;
+        if(fast==slow)
+            return 1;
+    }
+    return 0;
+} 
+int main()
+{
+    Node *head=NULL;
+    push(&head,1);
+    push(&head,2);
+    push(&head,3);
+    push(&head,9);
+    push(&head,5);
+    // create a loop for testing 
+    head->next->next->next=head;
+    if(detect_hasing_method(head))
+        cout<<"loop detected by hashing method "<<endl;
+    else{
+        cout<<"no loop "<<endl;
+    }
+
+    if(detect_cycle_method(head))
+        cout<<"loop detected by floyd cycle method "<<endl;
+    else{
+        cout<<"no loop"<<endl;
+    }
+
+}
